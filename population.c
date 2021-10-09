@@ -23,7 +23,8 @@ int main(void)
     int f = get_int("What's the ending population size?\n");
     // TODO: Calculate number of years until we reach threshold
     // d = difference variable
-        int d = f-x;
+    int d = f - n;
+    printf("Years:%i\n", d);
     if (d < 0)
         {
             printf("Invalid Input\n");
