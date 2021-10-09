@@ -4,42 +4,28 @@
 int main(void)
 {
     // First prompt to enter the population size
-    int n = get_int("What's the starting population size?\n");
-    int x = 0;
+    int i ;
     do
         {
-            // Checks if in the first run , the value needes to be updated. Else increment x.
-            if (x>0)
-                {
-                    n = get_int("Starting population size too low, please enter a higher value.\n");
-                }
-            else
-                {
-                    x++;
-                }
+            i = get_int("What's the starting population size?\n");
         }
-    while (n <= 9);
-    // Prompt to take end population size
-    int f = get_int("What's the ending population size?\n");
-    // TODO: Calculate number of years until we reach threshold
-    // d = difference variable
-    int d = f - n;
-    if (d < 0)
+    while (i < 9);
+    int f ;
+    do
         {
-            printf("Invalid Input\n");
+            // Prompt to take end population size
+            f = get_int("What's the final population size?\n");
         }
-    else
+    while (f < i);
+    // y = years required
+    int y = 0 ;
+    // this loop checks for difference to be zero and increments the years on each round
+    int d = f - i ;
+    while (d > 0)
         {
-            // y = years required
-            int y = 0 ;
-            // this loop checks for difference to be zero and increments the years on each round
-            while (d > 0)
-                {
-                    d = (d - n/3 + n/4) ;
-                    y++;
-                }
-
-            // TODO: Print number of years
-            printf("Years: %i", y);
+            d = (d - i/3 + i/4) ;
+            y++;
         }
+        // TODO: Print number of years
+    printf("Years: %i", y);
 }
