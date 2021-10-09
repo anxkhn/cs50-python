@@ -12,17 +12,17 @@ int main(void)
     while (cash<0);
     int cents = round(cash * 100);
     int i=0;
-    while (cents>25)
+    while (cents>=25)
         {
             cents = (cents-25);
             i++;
         }
-    while (cents>10)
+    while (cents>=10)
         {
             cents = (cents-10);
             i++;
         }
-    while (cents>5)
+    while (cents>=5)
         {
             cents = (cents-5);
             i++;
