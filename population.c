@@ -35,7 +35,7 @@ int main(void)
             // this loop checks for difference to be zero and increments the years on each round
             while (d >= 0)
                 {
-                    d = (d - y/3 + y/4) ;
+                    d = (d - n/3 + n/4) ;
                     y++;
                 }
 
