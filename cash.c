@@ -37,5 +37,6 @@ int main(void)
         cents = (cents - 1);
         i++;
     }
+    // Prints the output
     printf("%i", i);
 }
