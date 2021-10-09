@@ -33,13 +33,13 @@ int main(void)
             // y = years required
             int y = 0 ;
             // this loop checks for difference to be zero and increments the years on each round
-            while (d >= 0)
+            while (d > 0)
                 {
                     d = (d - n/3 + n/4) ;
                     y++;
                 }
 
             // TODO: Print number of years
-            printf("Years: %i\n", y);
+            printf("Years: %i", y);
         }
 }
