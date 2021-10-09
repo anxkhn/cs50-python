@@ -24,7 +24,6 @@ int main(void)
     // TODO: Calculate number of years until we reach threshold
     // d = difference variable
     int d = f - n;
-    printf("Years:%i\n", d);
     if (d < 0)
         {
             printf("Invalid Input\n");
