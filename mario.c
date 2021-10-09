@@ -24,7 +24,7 @@ int main(void)
             // Prints required HASH
             printf("#");
         }
-            printf("  ");
+        printf("  ");
         for (int j = 0; j <= i; j++)
         {
             //Prints new hash
