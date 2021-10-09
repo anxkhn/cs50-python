@@ -18,7 +18,7 @@ int main(void)
                     x++;
                 }
         }
-    while (n < 9);
+    while (n <= 9);
     // Prompt to take end population size
     int f = get_int("What's the ending population size?\n");
     // TODO: Calculate number of years until we reach threshold
@@ -40,6 +40,6 @@ int main(void)
                 }
 
             // TODO: Print number of years
-            printf("Years: %i\n", y-1);
+            printf("Years: %i\n", y);
         }
 }
