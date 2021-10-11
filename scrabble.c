@@ -50,7 +50,7 @@ int compute_score(string word)
             //for debugging purposes            printf("B %i\n", word[i]);
         }
 
-        if (word[i] <= 90 && word[i] >= 65)
+        if (word[i] <= 'Z' && word[i] >= 'A')
         {
             //for debugging purposes            printf("C %i\n", word[i]);
             int z = word[i] - 65;
