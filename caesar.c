@@ -4,28 +4,25 @@
 #include <ctype.h>
 #include <cs50.h>
 
- int main(int argc, string argv[])
+int main(int argc, string argv[])
 {
-    int key = 0;
-    for (int i = 0; i < strlen(argv[1]); i ++)
-    {
-
-        if (isalpha(argv[1][i]))
+    if (argc != 2)
         {
-            printf ("Enter a valid input.\n");
             return 1;
         }
-    }
-    if (argc != 2)
-    {
-        printf("Enter a valid input.\n");
-        return 1;
-    }
-    else
-    {
-        // convert key to integer then store the key
-    key = atoi(argv[1])%26;
-    }
+        else
+        {
+        // check if the key is all numeric
+        for (int i = 0, n = strlen(argv[1]); i < n; i++)
+            {
+            if (isalpha(argv[1][i]))
+                {
+                return 1;
+                }
+            }
+        }
+    int key = atoi(argv[1])%26;
+    return 0;
     string word = get_string("plaintext:  ");
     int len = strlen(word);
 
@@ -44,7 +41,7 @@
         if (x <= 'z' && x >= 'a')
         {
             x = x + key ;
-            if (x > 122 )
+            if (x > 122)
             {
                 x = x - 26 ;
             }
