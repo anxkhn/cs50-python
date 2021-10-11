@@ -5,34 +5,38 @@
 #include <cs50.h>
 
  int main(int argc, string argv[])
- {
-    int key = 0 ;
-    // check for arguments
-    if (argc != 2)
+{
+    int key = 0;
+    for (int i = 0; i < strlen(argv[1]); i ++)
     {
-        printf("Reenter\n");
-        return 1;
+
+        if (isalpha(argv[1][i]))
+        {
+            printf ("Enter a valid input.\n");
+            return 1;
+        }
     }
-    int j = atoi(argv[1]);
-    if (j < 0)
+    int k = atoi(argv[1]);
+    if (argc != 2 || k < 0)
     {
-        printf("Reenter\n");
+        printf("Enter a valid input.\n");
         return 1;
     }
     else
     {
         // convert key to integer then store the key
-        key = atoi(argv[1])%26;
+    key = atoi(argv[1])%26;
     }
     string word = get_string("plaintext:  ");
     int len = strlen(word);
-    for (int i = 0; i < len; i++)
+
+    for (int j = 0; j < len; j++)
     {
         // Detection and crypting of words
-        int x = word[i] ;
+        int x = word[j] ;
         if (x <= 'Z' && x >= 'A')
         {
-            x = x + key;
+            x = x + key ;
             if (x > 'Z')
             {
                 x = x - 26 ;
@@ -40,13 +44,13 @@
         }
         if (x <= 'z' && x >= 'a')
         {
-            x = x + key;
+            x = x + key ;
             if (x > 122 )
             {
                 x = x - 26 ;
             }
         }
-        word[i] = x ;
+        word[j] = x ;
     }
     printf("ciphertext: %s\n", word);
 }
