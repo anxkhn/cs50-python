@@ -36,6 +36,7 @@ int main(int argc, string argv[])
         if (x <= 'Z' && x >= 'A')
         {
             x = x + key ;
+            // incase x goes out of ascii range of alphabets (UPPERCASE)
             if (x > 'Z')
             {
                 x = x - 26 ;
@@ -44,6 +45,7 @@ int main(int argc, string argv[])
         if (x <= 'z' && x >= 'a')
         {
             x = x + key ;
+            // incase x goes out of ascii range of alphabets (loswercase)
             if (x > 122)
             {
                 x = x - 26 ;
