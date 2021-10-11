@@ -23,22 +23,24 @@ int main(int argc, string argv[])
     for (int i = 0; i < len; i++)
     {
         // Detection and crypting of words
-        if (word[i] <= 'Z' && word[i] >= 'A')
+        int x = word[i] ;
+        if (x <= 'Z' && x >= 'A')
         {
-            word[i] = word[i] + (key%26);
-            if ((word[i] > 'Z') || (word[i] > 'z'))
+            x = x + (key%26);
+            if (x > 'Z')
             {
-                word[i] = word[i] - 26 ;
+                x = x - 26 ;
             }
         }
-        if (word[i] <= 'z' && word[i] >= 'a')
+        if (x <= 'z' && x >= 'a')
         {
-            word[i] = word[i] + (key%26);
-            if (word[i] > 'z')
+            x = x + (key%26);
+            if (x > 122 )
             {
-                word[i] = word[i] - 26 ;
+                x = x - 26 ;
             }
         }
+        word[i] = x ;
     }
     printf("ciphertext: %s\n", word);
 }
