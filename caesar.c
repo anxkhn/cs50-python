@@ -26,6 +26,10 @@ int main(int argc, string argv[])
         if ((word[i] <= 'Z' && word[i] >= 'A') || (word[i] <= 'z' && word[i] >= 'a'))
         {
             word[i] = word[i] + (key%26);
+            if ((word[i] > 'Z') || (word[i] > 'z'))
+            {
+                word[i] = word[i] - 26 ;
+            }
         }
     }
     printf("ciphertext: %s\n", word);
