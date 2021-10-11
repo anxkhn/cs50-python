@@ -6,25 +6,29 @@
 
 int main(int argc, string argv[])
 {
+    // checking if there exsist two arguments (one caesar.c and other is user input)
     if (argc != 2)
-        {
-            return 1;
-        }
-        else
-        {
-        // check if the key is all numeric
+    {
+        return 1;
+    }
+    else
+    {
+        // checking if the input is valid (numeric only)
         for (int i = 0, n = strlen(argv[1]); i < n; i++)
-            {
+        {
             if (isalpha(argv[1][i]))
-                {
+            {
                 return 1;
-                }
             }
         }
-    int key = atoi(argv[1])%26;
+    }
+    // atoi = convert input string to an int variable
+    int key = atoi(argv[1]) % 26 ;
+    // ask user input for encryption word
     string word = get_string("plaintext:  ");
-    int len = strlen(word);
-
+    // get user input world lenght
+    int len = strlen(word) ;
+    //loop to repeat for every index of string
     for (int j = 0; j < len; j++)
     {
         // Detection and crypting of words
@@ -47,5 +51,6 @@ int main(int argc, string argv[])
         }
         word[j] = x ;
     }
+    // print output text
     printf("ciphertext: %s\n", word);
 }
