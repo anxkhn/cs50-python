@@ -4,21 +4,19 @@
 #include <ctype.h>
 #include <cs50.h>
 
-int main(int argc, string argv[])
-{
-    for (int i = 0; i < strlen(argv[1]); i ++)
+ int main(int argc, string argv[])
+ {
+    int key = 0 ;
+    // check for arguments
+    if (argc != 2)
     {
-        if (isalpha(argv[1][i]))
-        {
-            printf ("Enter a valid input.\n");
-            return 1;
-        }
+        printf("Reenter\n");
+        return 1;
     }
-    int key = 0;
-    if (argc != 2 || atoi(argv[1]) < 0 ||  argc == 1)
+    int j = atoi(argv[1]);
+    if (j < 0)
     {
-        // warn user and re enter
-        printf("Enter a single command-line. \n");
+        printf("Reenter\n");
         return 1;
     }
     else
