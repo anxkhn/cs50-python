@@ -4,10 +4,8 @@
 #include <ctype.h>
 #include <cs50.h>
 
-
 int main(int argc, string argv[])
 {
-    int key = 0;
     for (int i = 0; i < strlen(argv[1]); i ++)
     {
         if (isalpha(argv[1][i]))
@@ -16,6 +14,7 @@ int main(int argc, string argv[])
             return 1;
         }
     }
+    int key = 0;
     if (argc != 2 || atoi(argv[1]) < 0 ||  argc == 1)
     {
         // warn user and re enter
