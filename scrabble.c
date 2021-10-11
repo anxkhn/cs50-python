@@ -45,18 +45,23 @@ int compute_score(string word)
     {
         if (islower(word[i]))
         {
+            //for debugging purposes            printf("A %i\n", word[i]);
             word[i] = word[i] - 32;
+            //for debugging purposes            printf("B %i\n", word[i]);
         }
 
-        if (word[i] <= 90 & word[i] >= 65)
+        if (word[i] <= 90 && word[i] >= 65)
         {
-            sum = sum + POINTS[i];
+            //for debugging purposes            printf("C %i\n", word[i]);
+            int z = word[i] - 65;
+            sum = sum + POINTS[z];
+            //for debugging purposes            printf("D %i\n", word[i]);
         }
 
     }
 
     //for debugging purposes
-    //printf("%i\n", sum);
+    //printf("E %i\n", sum);
 
     return sum;
 }
