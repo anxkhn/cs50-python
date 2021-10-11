@@ -16,7 +16,7 @@ int main(int argc, string argv[])
             return 1;
         }
     }
-    if (argc != 2 || atoi(argv[1]) < 0)
+    if (argc != 2 || atoi(argv[1]) <= 0)
     {
         // warn user and re enter
         printf("Enter a single command-line. \n");
