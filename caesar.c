@@ -16,8 +16,7 @@
             return 1;
         }
     }
-    int k = atoi(argv[1]);
-    if (argc != 2 || k < 0)
+    if (argc != 2)
     {
         printf("Enter a valid input.\n");
         return 1;
