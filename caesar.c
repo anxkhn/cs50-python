@@ -22,7 +22,6 @@ int main(int argc, string argv[])
             }
         }
     int key = atoi(argv[1])%26;
-    return 0;
     string word = get_string("plaintext:  ");
     int len = strlen(word);
 
