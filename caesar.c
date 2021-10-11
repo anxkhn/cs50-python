@@ -23,10 +23,18 @@ int main(int argc, string argv[])
     for (int i = 0; i < len; i++)
     {
         // Detection and crypting of words
-        if ((word[i] <= 'Z' && word[i] >= 'A') || (word[i] <= 'z' && word[i] >= 'a'))
+        if (word[i] <= 'Z' && word[i] >= 'A')
         {
             word[i] = word[i] + (key%26);
             if ((word[i] > 'Z') || (word[i] > 'z'))
+            {
+                word[i] = word[i] - 26 ;
+            }
+        }
+        if (word[i] <= 'z' && word[i] >= 'a')
+        {
+            word[i] = word[i] + (key%26);
+            if (word[i] > 'z')
             {
                 word[i] = word[i] - 26 ;
             }
