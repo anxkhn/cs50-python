@@ -1,0 +1,11 @@
+sort1 uses: Bubble
+
+How do you know?: Has relativey the highest runtime in reversed order.
+
+sort2 uses: Merge
+
+How do you know?: Least running time amongst all.
+
+sort3 uses: Bubble
+
+How do you know?: Relatively lower runtime in sorted.
