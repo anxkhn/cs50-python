@@ -5,7 +5,9 @@ How do you know?: Has relativey the highest runtime in reversed order.
 
 sort2 uses: Merge
 
-How do you know?: Least running time amongst all.
+How do you know?: Least running time in reversed.
+                : Least running time in random.
+                : Least running time in sorted.
 
 sort3 uses: Selection
 
