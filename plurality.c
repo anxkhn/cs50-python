@@ -85,7 +85,7 @@ void print_winner(void)
     //equal votes case
     for (int i = 0; i < candidate_count; i++)
     {
-        if (candidates[i].votes == maxsubmit50 cs50/problems/2021/x/plurality)
+        if (candidates[i].votes == max)
         {
             printf("%s\n", candidates[i].name);
         }
