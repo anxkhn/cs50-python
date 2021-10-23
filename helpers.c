@@ -17,7 +17,8 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             int b = image[i][j].rgbtBlue;
 
             // Find average
-            int avg = round((r+g+b) / 3);
+            float avgval = ((r+g+b) / 3);
+            int avg = round(avgval);
 
             // Replace original rgb values with average
             image[i][j].rgbtRed = avg;
@@ -45,16 +46,38 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             int sr = round(.393 * r + .769 * g + .189 * b);
             int sg = round(.349 * r + .686 * g + .168 * b);
             int sb = round(.272 * r + .534 * g + .131 * b);
-            // Replace original rgb values with average
-            image[i][j].rgbtRed = sr;
-            image[i][j].rgbtGreen = sg;
-            image[i][j].rgbtBlue = sb;
+            // Checks to make sure each rgb value is valid (less then 255) and replaces it. Else sets to 255
+            if (sr < 255)
+            {
+                image[i][j].rgbtRed = sr;
+            }
+            else
+            {
+                image[i][j].rgbtRed = 255;
+            }
+
+            if (sg < 255)
+            {
+                image[i][j].rgbtGreen = sg;
+            }
+            else
+            {
+                image[i][j].rgbtGreen = 255;
+            }
+
+            if (sb < 255)
+            {
+                image[i][j].rgbtBlue = sb;
+            }
+            else
+            {
+                image[i][j].rgbtBlue = 255;
+
+            }
         }
     }
     return;
 }
-
-
 // Reflect image horizontally
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
