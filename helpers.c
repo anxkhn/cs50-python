@@ -19,7 +19,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             // Find average
 //            float average = (float)(r + g + b) / 3;
 //            int avg = (int) round(average);
-            int avg = round((r + g + b) / 3);
+            int avg =  ceil((r + g + b) / 3);
 
 
             // Replace original rgb values with average
