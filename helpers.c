@@ -17,8 +17,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
             int b = image[i][j].rgbtBlue;
 
             // Find average
-            float avgval = ((r+g+b) / 3);
-            int avg = round(avgval);
+            int avg = ceil(((r+g+b) / 3));
 
             // Replace original rgb values with average
             image[i][j].rgbtRed = avg;
@@ -43,9 +42,9 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             int b = image[i][j].rgbtBlue;
 
             // make sepia
-            int sr = round(.393 * r + .769 * g + .189 * b);
-            int sg = round(.349 * r + .686 * g + .168 * b);
-            int sb = round(.272 * r + .534 * g + .131 * b);
+            int sr = ceil(.393 * r + .769 * g + .189 * b);
+            int sg = ceil(.349 * r + .686 * g + .168 * b);
+            int sb = ceil(.272 * r + .534 * g + .131 * b);
             // Checks to make sure each rgb value is valid (less then 255) and replaces it. Else sets to 255
             if (sr < 255)
             {
