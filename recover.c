@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
         }
         if (copy)
         {
-        fwrite(buffer, 512, 1, outptr);
+            fwrite(buffer, 512, 1, outptr);
         }
     }
     fclose(inptr);
