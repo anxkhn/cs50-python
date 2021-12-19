@@ -30,9 +30,18 @@ int total_words = 0;
 // Returns true if word is in dictionary else false
 bool check(const char *word)
 {
-    // TODO
-    int index = hash(word);
-
+    //make node and iterate the hash table
+    node *cursor1 = table[hash(word)];
+{
+    // make word lower case
+    int len = strlen(word);
+    char lword[len + 1];
+    for (int i = 0; i < len; i++)
+    {
+        lword[i] = tolower(word[i]);
+    }
+    lword[len] = '\0';
+    int index = hash(lword);
     node *cursor = table[index];
     while (cursor != NULL)
     {
