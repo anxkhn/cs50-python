@@ -30,25 +30,32 @@ int total_words = 0;
 // Returns true if word is in dictionary else false
 bool check(const char *word)
 {
-    //create note to iterate hash table
-    node *cursora = table[hash(word)];
-
-    //if the hashed value doesnt point to null, see if the hash table has the same word as the text
-    while (cursora != NULL)
+    // make word lower case for hash function
+    int len = strlen(word);
+    char lword[len + 1];
+    for (int i = 0; i < len; i++)
     {
+        lword[i] = tolower(word[i]);
+    }
+    lword[len] = '\0';
 
-        if (strcasecmp(cursora->word, word) == 0)
+    int index = hash(lword);
+    node *cursor = table[index];
+    while (cursor != NULL)
+    {
+        if (strcasecmp(cursor->word, word) != 0)
+        {
+            cursor = cursor->next;
+        }
+        else
         {
             return true;
         }
 
-        //keep moving through the has table
-        cursora = cursora->next;
     }
-    //free the allocated memory
-    free(cursora);
     return false;
 }
+
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
