@@ -6,18 +6,16 @@ if len(argv) != 3:
     print("Usage: dna.py csv txt")
     exit(1)
 
-# open the DNA sequence and read its contents into memory.
+# DNA sequence into memory.
 txtfile = open(argv[2], "r")
 if not txtfile:
-    print("Could not open file.")
+    print("Can't not open file.")
     exit(1)
 dna = txtfile.read()
 
-# If the STR counts match exactly with any of the individuals in the CSV file, print out the name of the matching individual.
+# STR count matching algo.
 with open(argv[1]) as csvfile:
     reader = csv.DictReader(csvfile)
-
-    # For each of the STRs, compute the longest run of consecutive repeats of the STR in the DNA sequence to identify
     keys = reader.fieldnames.copy()
     del keys[0]
     keysMax = []
@@ -32,8 +30,7 @@ with open(argv[1]) as csvfile:
                 if count > keysMax[j]:
                     keysMax[j] = count
 
-
-#Compare each row of CSV with STR results
+# Compareing values
 found = False
 with open(argv[1]) as csvfile:
     reader = csv.reader(csvfile)
@@ -47,11 +44,7 @@ with open(argv[1]) as csvfile:
             match = row[0]
             found = True
             break
-        #if int(row[1]) == keysMax[0] and int(row[2]) == keysMax[1] and int(row[3]) == keysMax[2]:
-            #match = row[0]
-            #found = True
-
-# Print match
+# Printing output
 if found == True:
     print(match)
 else:
