@@ -38,7 +38,7 @@ bool check(const char *word)
         lword[i] = tolower(word[i]);
     }
     lword[len] = '\0';
-
+// iterate thru each word and lowercase for easier detection
     int index = hash(lword);
     node *cursor = table[index];
     while (cursor != NULL)
@@ -61,7 +61,9 @@ unsigned int hash(const char *word)
 {
     unsigned int hash = 0;
     for (int i = 0, n = strlen(word); i < n; i++)
+    {
         hash = (hash << 2) ^ word[i];
+    }
     return hash % N;
 }
 
@@ -69,12 +71,13 @@ unsigned int hash(const char *word)
 bool load(const char *dictionary)
 {
     FILE *file = fopen(dictionary, "r");
-    if(!file){
+    if (!file)
+    {
         return false;
     }
     char buffer[LENGTH + 1];
 
-    while(fscanf(file, "%s", buffer) != EOF)
+    while (fscanf(file, "%s", buffer) != EOF)
     {
         node *n = malloc(sizeof(node));
 
@@ -82,10 +85,12 @@ bool load(const char *dictionary)
 
         unsigned int index = hash(buffer);
 
-        if(table[index] != NULL)
+        if (table[index] != NULL)
         {
-           n->next = table[index];
-        }else {
+            n->next = table[index];
+        }
+        else
+        {
             n->next = NULL;
         }
 
@@ -106,13 +111,13 @@ unsigned int size(void)
     return total_words;
 }
 
-void destroy(node *root){
-
-    if(root->next != NULL){
+void destroy(node *root)
+{
+    if (root->next != NULL)
+    {
         destroy(root->next);
     }
     free(root);
-
 }
 
 // Unloads dictionary from memory, returning true if successful else false
@@ -120,7 +125,7 @@ bool unload(void)
 {
     for (int i = 0; i < N; i++)
     {
-        if(table[i]!= NULL)
+        if (table[i] != NULL)
         {
             destroy(table[i]);
         }
