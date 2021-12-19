@@ -3,7 +3,7 @@ from cs50 import get_string
 text = get_string("Text: ")
 words = text.count(" ") + 1
 sentences = text.count(".") + text.count("!") + text.count("?")
-
+# special method to check for letters (unavailable in C)
 letters = 0
 for i in text:
     if i.isalpha():
