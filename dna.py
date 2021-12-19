@@ -1,3 +1,4 @@
+# Checked with python docs for functions and libs
 from sys import argv
 from sys import exit
 import csv
@@ -19,22 +20,23 @@ with open(argv[1]) as csvfile:
     keys = reader.fieldnames.copy()
     del keys[0]
     keysMax = []
+# loops with cases
     for j in range(len(keys)):
         keysMax.append(0)
         for i in range(len(dna)):
             count = 0
-            if dna[i:i+len(keys[j])]  == keys[j]:
-                while dna[i:i+len(keys[j])]  == keys[j]:
+            if dna[i:i+len(keys[j])] == keys[j]:
+                while dna[i:i+len(keys[j])] == keys[j]:
                     i += len(keys[j])
                     count += 1
                 if count > keysMax[j]:
                     keysMax[j] = count
 
-# Compareing values
+# Compareing values while skipping header files
 found = False
 with open(argv[1]) as csvfile:
     reader = csv.reader(csvfile)
-    next(reader) #Skip header CSV
+    next(reader)
     for row in reader:
         corresp = 0
         for i in range(len(keysMax)):
