@@ -27,20 +27,26 @@ int counter = 0;
 // count read words
 int total_words = 0;
 
-// Returns true if word is in dictionary, else false
+// Returns true if word is in dictionary else false
 bool check(const char *word)
 {
-    // TODO
-    int index = hash(word);
-    node *cursor = table[index];
-    while (cursor != NULL)
+    //create note to iterate hash table
+    node *cursora = table[hash(word)];
+
+    //if the hashed value doesnt point to null, see if the hash table has the same word as the text
+    while (cursora != NULL)
     {
-        if (strcasecmp(cursor->word, word) == 0)
+
+        if (strcasecmp(cursora->word, word) == 0)
         {
             return true;
         }
-        cursor = cursor->next;
+
+        //keep moving through the has table
+        cursora = cursora->next;
     }
+    //free the allocated memory
+    free(cursora);
     return false;
 }
 // Hashes word to a number
