@@ -1,2 +1,1 @@
-SELECT title, rating FROM
-    (movies JOIN ratings ON movies.id = ratings.movie_id WHERE year = "2010" ORDER BY rating DESC, title);
+SELECT title, rating FROM (movies JOIN ratings ON movies.id = ratings.movie_id FROM year = "2010" ORDER BY rating DESC, title);
