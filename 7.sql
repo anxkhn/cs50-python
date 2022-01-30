@@ -1,1 +1,2 @@
-SELECT title, rating FROM movies JOIN ratings ON movies.id = ratings.movie_id WHERE year = "2010" ORDER BY rating DESC, title;
+-- SQL query that returns the average energy of songs that are by Drake.
+SELECT AVG(energy) FROM songs WHERE artist_id = (SELECT id FROM artists WHERE name = 'Drake');

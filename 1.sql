@@ -1,1 +1,1 @@
-SELECT title FROM movies WHERE year LIKE "2008";
+SELECT name FROM songs;
