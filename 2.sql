@@ -1,1 +1,1 @@
-SELECT name FROM songs ORDER BY tempo;
+SELECT birth FROM people WHERE name LIKE "Emma Stone" ;

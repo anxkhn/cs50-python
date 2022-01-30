@@ -1,2 +1,3 @@
--- SQL query that lists the names of the songs that feature other artists.
-SELECT name FROM songs WHERE name LIKE '%feat.%';
+SELECT name FROM
+    movies JOIN stars ON movies.id = stars.movie_id
+    JOIN people ON stars.person_id = people.id WHERE title = "Toy Story";

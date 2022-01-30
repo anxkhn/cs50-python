@@ -1,3 +1,1 @@
--- output a table with a single column and a single row containing the average energy. 
-
-SELECT AVG(energy) FROM songs;
+SELECT title, year FROM movies WHERE title LIKE "Harry Potter%"ORDER BY year;
