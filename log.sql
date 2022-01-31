@@ -71,11 +71,5 @@ WHERE id = (
 --Location: London
 
 --ACCOMPLICE
-SELECT name
-FROM people
-JOIN phone_calls ON people.phone_number = phone_calls.receiver
-WHERE day = "28" AND month = "7" AND year = "2021" AND duration < "60" AND caller = (
-    SELECT phone_number
-    FROM people
-    WHERE name = "Ernest");
+s
 --The ACCOMPLICE is: Berthold
