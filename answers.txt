@@ -1,3 +1,1 @@
-The THIEF is: Bruce
-The city the thief ESCAPED TO: New York
-The ACCOMPLICE is: Robin
+submit50 cs50/problems/2022/x/fiftyville
