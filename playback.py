@@ -1,2 +1,2 @@
-name = input().lower()
-print (name, sep='...')
+name = input()
+print(f"{name}", sep="...")
