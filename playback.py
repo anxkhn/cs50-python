@@ -1,2 +1,2 @@
-name = input()
-print(f"{name}", sep="...")
+name = input().replace(" ", "...")
+print(name)
