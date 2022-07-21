@@ -1,5 +1,5 @@
 def main():
-    a, b , c = input("Enter the time: ").strip().split(":")
+    a, b = input("Enter the time: ").strip().split(":")
 
     z = convert(int(a),int(b))
     if z >= 7.0 and z <= 8.0:
