@@ -1,8 +1,17 @@
-name = str(input().strip().lower())
-if name[0] == "h":
-    if name[1] == "e" & name[2] == "l" & name[3] == "l" & name[4] == "o" :
-        print("$0")
+def main():
+    """Be friendly to our customer"""
+    greeting = input("Greeting: ").strip().lower()
+    print(f"${penalty(greeting)}")
+
+
+def penalty(greeting):
+    """Check how much we owe the customer"""
+    if greeting.startswith("hello"):
+        return 0
+    elif greeting.startswith("h"):
+        return 20
     else:
-        print("$20")
-else:
-    print("$100")
+        return 100
+
+
+main()
