@@ -10,7 +10,7 @@ def main():
         print("dinner time")
 
 
-def convert(a,b,c):
+def convert(a,b):
     b = float(b/60)
     z = float(a + b)
 #   if c == "p.m.":
