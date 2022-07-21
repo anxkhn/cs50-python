@@ -1,12 +1,12 @@
 def main():
-    input = input().strip().lower()
-    print(f"${check(input)}")
+    word = input().strip().lower()
+    print(f"${check(word)}")
 
 
-def check(input):
-    if input.startswith("hello"):
+def check(word):
+    if word.startswith("hello"):
         return 0
-    elif input.startswith("h"):
+    elif word.startswith("h"):
         return 20
     else:
         return 100
