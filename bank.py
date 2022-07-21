@@ -1,12 +1,12 @@
 def main():
-    word = input().strip().lower()
-    print(f"${check(word)}")
+    hello = input().strip().lower()
+    print(f"${balance(hello)}")
 
 
-def check(word):
-    if word.startswith("hello"):
+def balance(hello):
+    if hello.startswith("hello"):
         return 0
-    elif word.startswith("h"):
+    elif hello.startswith("h"):
         return 20
     else:
         return 100
