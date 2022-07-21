@@ -1,15 +1,9 @@
-def main():
-    hello = input("Hie").strip().lower()
-    print(f"${balance(hello)}")
-
-
-def balance(hello):
-    if hello.startswith("hello"):
-        return 0
-    elif hello.startswith("h"):
-        return 20
+name = str(input("Hi! ").strip().lower())
+if name[0] == "h":
+    if name[1] == "e" & name[2] == "l" & name[3] == "l" & name[4] == "o" :
+        print("$0")
     else:
-        return 100
+        print("$20")
+else:
+    print("$100")
 
-
-main()
