@@ -1,5 +1,5 @@
 def main():
-    hello = input().strip().lower()
+    hello = input("Hie").strip().lower()
     print(f"${balance(hello)}")
 
 
