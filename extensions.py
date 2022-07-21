@@ -16,7 +16,7 @@ def find(extn):
             print("image/gif")
         elif ext[x] == "pdf":
             print("application/pdf")
-        elif ext[x] == "zip":submit50 cs50/problems/2022/python/extensions
+        elif ext[x] == "zip":
             print("application/zip")
         elif ext[x] == "txt":
             print("text/plain")
