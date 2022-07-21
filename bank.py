@@ -1,14 +1,12 @@
 def main():
-    """Be friendly to our customer"""
-    greeting = input("Greeting: ").strip().lower()
-    print(f"${penalty(greeting)}")
+    input = input().strip().lower()
+    print(f"${check(input)}")
 
 
-def penalty(greeting):
-    """Check how much we owe the customer"""
-    if greeting.startswith("hello"):
+def check(input):
+    if input.startswith("hello"):
         return 0
-    elif greeting.startswith("h"):
+    elif input.startswith("h"):
         return 20
     else:
         return 100
