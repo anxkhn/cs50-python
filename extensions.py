@@ -6,18 +6,19 @@ def main():
 
 def find(extn):
     if "." in extn:
-        ext = extn.split(".", 1)
-        if ext[1] == ("jpg"):
+        ext = extn.split(".")
+        x = int(len(ext)) - 1
+        if ext[x] == ("jpg") or ext[x] == ("jpg"):
             print("image/jpeg")
-        elif ext[1] == ("png"):
+        elif ext[x] == ("png"):
             print("image/png")
-        elif ext[1] == "gif":
+        elif ext[x] == "gif":
             print("image/gif")
-        elif ext[1] == "pdf":
+        elif ext[x] == "pdf":
             print("application/pdf")
-        elif ext[1] == "zip":
+        elif ext[x] == "zip":
             print("application/zip")
-        elif ext[1] == "txt":
+        elif ext[x] == "txt":
             print("text/plain")
         else:
             print("application/octet-stream")
