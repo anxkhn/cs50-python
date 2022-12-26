@@ -7,7 +7,7 @@ from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from helpers import apology, login_required, lookup, usd
-import datetime
+
 # Configure application
 app = Flask(__name__)
 
@@ -57,6 +57,7 @@ def index():
 
     return render_template("index.html", stocks=stocks, cash=cash, total=total, usd=usd)
 
+
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
 def buy():
@@ -76,10 +77,10 @@ def buy():
         try:
             shares = int(request.form.get("shares"))
         except:
-            return apology("Please enter a value")
+            return apology("You did not enter a value")
 
         if shares <= 0:
-            return apology("shares must contain positive numbers")
+            return apology("Invalid Share Number ")
 
         user_id = session["user_id"]
 
@@ -91,7 +92,7 @@ def buy():
         total_cash_left = user_balance - total_shares_bought
 
         if total_shares_bought > user_balance:
-            return apology("Not enough cash")
+            return apology("Not enough balance")
 
         db.execute("UPDATE users SET cash = ? WHERE id = ?", total_cash_left, user_id)
 
@@ -198,18 +199,46 @@ def register():
         elif not confirmation:
             return apology('Please re enter password!')
 
-        if password!= confirmation:
+        if password != confirmation:
             return apology('Password does not match.')
+        //
+        l, u, p, d = 0, 0, 0, 0
+        s = password
+        capitalalphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        smallalphabets = "abcdefghijklmnopqrstuvwxyz"
+        specialchar = "~`!@#$%^&*()_-+={[}]|\:;"'<,>.?/"
+        digits = "0123456789"
+        if (len(s) >= 8):
+            for i in s:
 
-        hash = generate_password_hash(password)
+                # counting lowercase alphabets
+                if (i in smallalphabets):
+                    l += 1
 
-        try:
-            db.execute("INSERT INTO users(username, hash) VALUES (?,?)", username, hash)
-            return redirect('/')
-        except:
-            return apology('Username taken already')
+                # counting uppercase alphabets
+                if (i in capitalalphabets):
+                    u += 1
+
+                # counting digits
+                if (i in digits):
+                    d += 1
+
+                # counting the mentioned special characters
+                if(i in specialchar):
+                    p += 1
+        if (l >= 1 and u >= 1 and p >= 1 and d >= 1 and l+p+u+d == len(s)):
+            hash = generate_password_hash(password)
+            try:
+                db.execute("INSERT INTO users(username, hash) VALUES (?,?)", username, hash)
+                return redirect('/')
+            except:
+                return apology('Username taken already')
+        else:
+            apology("Password does not meet all criteria")
+
     else:
         return render_template("register.html")
+
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
@@ -227,7 +256,7 @@ def sell():
         stock_name = lookup(symbol)["name"]
 
         if not symbol:
-            return apology("please choose a stock")
+            return apology("Choose a stock")
 
         shares = int(request.form.get("shares"))
 
