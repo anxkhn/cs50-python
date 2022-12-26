@@ -7,7 +7,7 @@ from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from helpers import apology, login_required, lookup, usd
-
+import datetime
 # Configure application
 app = Flask(__name__)
 
@@ -43,8 +43,19 @@ def after_request(response):
 @login_required
 def index():
     """Show portfolio of stocks"""
-    return apology("TODO")
 
+    user_id = session["user_id"]
+
+    stocks = db.execute("SELECT name, SUM(shares) as value, price, symbol FROM history WHERE user_id = ? GROUP BY symbol", user_id)
+
+    cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
+
+    total = cash
+
+    for stock in stocks:
+        total += stock["price"] * stock["value"]
+
+    return render_template("index.html", stocks=stocks, cash=cash, total=total, usd=usd)
 
 @app.route("/buy", methods=["GET", "POST"])
 @login_required
@@ -96,7 +107,13 @@ def buy():
 @login_required
 def history():
     """Show history of transactions"""
-    return apology("TODO")
+
+    user_id = session["user_id"]
+
+    stocks = db.execute(
+        "SELECT name, SUM(shares) as value, price, type, symbol, time FROM history WHERE user_id = ? GROUP BY time", user_id)
+
+    return render_template("history.html", stocks=stocks)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -198,4 +215,47 @@ def register():
 @login_required
 def sell():
     """Sell shares of stock"""
-    return apology("TODO")
+
+    if request.method == "POST":
+
+        user_id = session["user_id"]
+
+        stocks = db.execute("SELECT * FROM history WHERE user_id = ? GROUP BY symbol", user_id)
+
+        symbol = request.form.get("symbol")
+
+        stock_name = lookup(symbol)["name"]
+
+        if not symbol:
+            return apology("please choose a stock")
+
+        shares = int(request.form.get("shares"))
+
+        user_shares = db.execute("SELECT shares FROM history WHERE symbol = ? AND user_id = ?", symbol, user_id)[0]["shares"]
+
+        if not shares:
+            return apology("Invalid")
+
+        if user_shares < shares:
+            return apology("Not enough shares")
+
+        if shares <= 0:
+            return apology("Shares must be a positive integer")
+
+        stock_price = lookup(symbol)["price"]
+
+        new_value = stock_price * shares
+        balance = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]["cash"]
+
+        db.execute("UPDATE users SET cash = ? WHERE id = ?", balance + new_value, user_id)
+
+        db.execute("INSERT INTO history (user_id, name, shares, price, type, symbol) VALUES (?, ?, ?, ?, ?, ?)",
+                   user_id, stock_name, -shares, stock_price, "sell", symbol)
+
+        return redirect("/")
+    else:
+        user_id = session["user_id"]
+
+        stocks = db.execute("SELECT symbol FROM history WHERE user_id = ? GROUP BY symbol", user_id)
+
+        return render_template("sell.html", stocks=stocks, usd=usd)
