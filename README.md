@@ -2,6 +2,16 @@
 #### Video Demo:  https://youtu.be/D6OguCpecCQ
 #### Description:
 
+PassVault is a Java Swing Password manager which is a software application that helps users securely store and manage their passwords for various online accounts and websites. It typically features a user interface (UI) built using the Java Swing toolkit, which is a set of graphical user interface (GUI) components for creating Java-based desktop applications.
+
+One of the main features of a Java Swing password manager is its ability to generate strong, unique passwords for each of the user's online accounts. These passwords are often difficult for hackers to guess or crack, making it harder for them to gain unauthorized access to the user's accounts. The password manager also allows users to easily and securely store their passwords in a central location, typically using encrypted storage to protect them from unauthorized access.
+
+Another feature of a Java Swing password manager is its ability to automatically fill in login forms on websites with the user's stored passwords. This can help users save time and reduce the risk of mistyping their passwords, which could lead to failed login attempts and potentially locked accounts. Some password managers also include a password strength checker, which helps users ensure that their passwords are strong enough to withstand potential attacks.
+
+One of the main benefits of using a Java Swing password manager is the convenience it provides. By storing all of the user's passwords in one central location, the password manager makes it easier for users to log in to their accounts and access the websites and services they need. It also helps users avoid the hassle of trying to remember multiple complex passwords, which can be especially useful for those who have a large number of online accounts.
+
+Overall, a Java Swing password manager is a valuable tool for anyone who wants to improve the security and convenience of managing their online passwords. With its strong password generation and storage capabilities, as well as its ability to automatically fill in login forms and provide additional security features, a Java Swing password manager can help users protect their sensitive information and streamline their online experience.
+
 Have a look at the recent data breaches:
 September 2022: Alleged TikTok Breach
 August 2022: 130+ Companies Compromised in 0ktapus Phishing Breach
