@@ -201,12 +201,11 @@ def register():
 
         if password != confirmation:
             return apology('Password does not match.')
-        //
         l, u, p, d = 0, 0, 0, 0
         s = password
         capitalalphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         smallalphabets = "abcdefghijklmnopqrstuvwxyz"
-        specialchar = "$@_"
+        specialchar = "~`!@#$%^&*()_-+={[}]|\:;"'<,>.?/"
         digits = "0123456789"
         if (len(s) >= 8):
             for i in s:
