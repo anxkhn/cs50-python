@@ -172,17 +172,17 @@ def register():
     if (request.method == "POST"):
         username = request.form.get('username')
         password = request.form.get('password')
-        reenter = request.form.get('reenter')
+        confirmation = request.form.get('confirmation')
 
         if not username:
             return apology('Please enter username!')
         elif not password:
             return apology('Please enter password!')
-        elif not reenter:
+        elif not confirmation:
             return apology('Please re enter password!')
 
-        if password!= reenter:
-            return reenter('Password does not match.')
+        if password!= confirmation:
+            return apology('Password does not match.')
 
         hash = generate_password_hash(password)
 
