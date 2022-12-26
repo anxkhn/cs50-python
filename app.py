@@ -223,7 +223,7 @@ def register():
                     d += 1
 
                 # counting the mentioned special characters
-                if(i in specialchar):
+                if (i in specialchar):
                     p += 1
         if (l >= 1 and u >= 1 and p >= 1 and d >= 1 and l+p+u+d == len(s)):
             hash = generate_password_hash(password)
@@ -233,7 +233,7 @@ def register():
             except:
                 return apology('Username taken already')
         else:
-            apology("Password does not meet all criteria")
+            return apology("Password does not meet all criteria")
 
     else:
         return render_template("register.html")
