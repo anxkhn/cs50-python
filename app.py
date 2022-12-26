@@ -206,7 +206,7 @@ def register():
         s = password
         capitalalphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         smallalphabets = "abcdefghijklmnopqrstuvwxyz"
-        specialchar = "~`!@#$%^&*()_-+={[}]|\:;"'<,>.?/"
+        specialchar = "$@_"
         digits = "0123456789"
         if (len(s) >= 8):
             for i in s:
