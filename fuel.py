@@ -16,6 +16,6 @@ def get_val(prompt):
                 return "F"
             elif percent <= 1:
                 return "E"
-            else:
+            elif 1<percent<99:
                 return (str(percent)+"%")
 main()
