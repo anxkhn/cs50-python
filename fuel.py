@@ -8,7 +8,7 @@ def get_val(prompt):
         if "/" in x:
             x = x.split("/")
             try:
-                percent = int(int(x[0])/int(x[1])*100)
+                percent = round(int(x[0])/int(x[1])*100)
                 #print(percent)
             except:
                 pass
