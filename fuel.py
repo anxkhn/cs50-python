@@ -9,7 +9,6 @@ def get_val(prompt):
             x = x.split("/")
             try:
                 percent = round(int(x[0])/int(x[1])*100)
-                #print(percent)
             except:
                 pass
             else:
