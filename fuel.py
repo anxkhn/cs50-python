@@ -8,14 +8,14 @@ def get_val(prompt):
         if "/" in x:
             x = x.split("/")
             try:
-                frac = int(x[0])/int(x[1])*100
-                #print(frac)
+                percent = int(int(x[0])/int(x[1])*100)
+                #print(percent)
             except:
                 pass
-            if frac >= 99:
+            if percent >= 99:
                 return "F"
-            elif frac <= 1:
+            elif percent <= 1:
                 return "E"
             else:
-                return (str(frac*100)+"%")
+                return (str(percent)+"%")
 main()
