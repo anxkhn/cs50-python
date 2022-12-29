@@ -12,10 +12,11 @@ def get_val(prompt):
                 #print(percent)
             except:
                 pass
-            if 99 <= percent <= 100:
-                return "F"
-            elif 0<= percent <= 1:
-                return "E"
-            elif 1<percent<99:
-                return (str(percent)+"%")
+            else:
+                if 99 <= percent <= 100:
+                    return "F"
+                elif 0<= percent <= 1:
+                    return "E"
+                elif 1<percent<99:
+                    return (str(percent)+"%")
 main()
