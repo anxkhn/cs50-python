@@ -1,6 +1,6 @@
 def main():
     val = get_val("What's x? ")
-    print(val)
+    print(val, end='')
 
 def get_val(prompt):
     while True:
