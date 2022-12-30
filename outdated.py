@@ -27,6 +27,8 @@ while True:
             for i in range(len(months)):
                 if o_month == months[i]:
                     month = i + 1
+            if ("," in  day) == False:
+                break
             day = o_day.replace(",","")
             if (1<= int(month) <= 12) and (1 <= int(day) <= 31):
                 break
@@ -41,4 +43,4 @@ while True:
 # if int(day) < 10:
 #     print("0", end='')
 # print(day, end='')
-print(f"{year}-{int(month):02}-{int(day):02}",end='')
+print(f"{int(year)}-{int(month):02}-{int(day):02}",end='')
