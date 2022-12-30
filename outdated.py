@@ -41,4 +41,4 @@ while True:
 # if int(day) < 10:
 #     print("0", end='')
 # print(day, end='')
-print(f"{year}-{int(month):02}-{int(day):02}")
+print(f"{year}-{int(month):02}-{int(day):02}",end='')
