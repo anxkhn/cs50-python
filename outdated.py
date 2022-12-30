@@ -29,10 +29,8 @@ while True:
                     month = i + 1
             if ("," in o_day) == True:
                 day = o_day.replace(",","")
-            else:
-                break
-            if (1<= int(month) <= 12) and (1 <= int(day) <= 31):
-                break
+                if (1<= int(month) <= 12) and (1 <= int(day) <= 31):
+                    break
         except:
             pass
 # print(year, end='')
