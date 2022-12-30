@@ -34,10 +34,10 @@ while True:
             pass
 print(year, end='')
 print("-", end='')
-if month < 10:
+if int(month) < 10:
     print("0", end='')
 print(month, end='')
 print('-', end='')
-if day < 10:
+if int(day) < 10:
     print("0", end='')
 print(day, end='')
