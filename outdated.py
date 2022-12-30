@@ -32,12 +32,13 @@ while True:
                 break
         except:
             pass
-print(year, end='')
-print("-", end='')
-if int(month) < 10:
-    print("0", end='')
-print(month, end='')
-print('-', end='')
-if int(day) < 10:
-    print("0", end='')
-print(day, end='')
+# print(year, end='')
+# print("-", end='')
+# if int(month) < 10:
+#     print("0", end='')
+# print(month, end='')
+# print('-', end='')
+# if int(day) < 10:
+#     print("0", end='')
+# print(day, end='')
+print(f"{year}-{int(month):02}-{int(day):02}")
