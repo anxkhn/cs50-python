@@ -8,6 +8,6 @@ while True:
         else:
             grocery_list[item] = 1
     except EOFError:
-        for key in sorted(grocery_list.()keys):
+        for key in sorted(grocery_list.keys()):
             print(grocery_list[key], key)
         break
