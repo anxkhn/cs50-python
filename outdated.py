@@ -27,7 +27,7 @@ while True:
             for i in range(len(months)):
                 if o_month == months[i]:
                     month = i + 1
-            if ("," in  day) == False:
+            if ("," in o_day) == False:
                 break
             day = o_day.replace(",","")
             if (1<= int(month) <= 12) and (1 <= int(day) <= 31):
