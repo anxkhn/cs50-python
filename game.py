@@ -3,10 +3,10 @@ import random
 while True:
     try:
         level = int(input("Level : "))
+        num = random.randint(1, level)
     except:
         pass
     else:
-        num = random.randint(1, level)
         while True:
             try:
                 x = int(input("Guess : "))
