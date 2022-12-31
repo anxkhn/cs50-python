@@ -5,7 +5,7 @@ figlet = Figlet()
 
 
 
-if sys.argv[1] == "--font" or sys.argv[3] == "-f":
+if sys.argv[1] == "--font" or sys.argv[1] == "-f":
     s = input("Enter Text : ")
     f = sys.argv[2]
     figlet.setFont(font=f)
