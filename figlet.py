@@ -11,6 +11,8 @@ if len(sys.argv)== 3:
         f = sys.argv[2]
         figlet.setFont(font=f)
         print(figlet.renderText(s))
+    else:
+        sys.exit()
 elif len(sys.argv) == 1:
     s = input("Enter Text : ")
     f = random.choice(figlet.getFonts())
