@@ -50,11 +50,9 @@ def level_checker(level):
     while qno < 3:
         x,y = generate_integer(level)
         qno += 1
-        print(qno)
         check = math_checker(x,y)
         if check == 1:
             score +=1
-            print(score)
     return score
 
 if __name__ == "__main__":
