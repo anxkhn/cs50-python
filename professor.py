@@ -3,7 +3,7 @@ import random
 
 def main():
     level = get_level()
-    level_checker(x,y)
+    level_checker(level)
     score = level_checker(level)
     print("Score: ", score)
 
@@ -42,7 +42,7 @@ def math_checker(x,y):
         except:
             tries += 1
             print("EEE")
-    print(f"{x} + {y}" = {x+y})
+    print(f"{x} + {y} = {x+y}")
     return 0
 
 def level_checker(level):
