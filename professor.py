@@ -33,7 +33,7 @@ def math_checker(x,y):
     tries = 0
     while tries < 3:
         try:
-            answer = int(input(f"{x} + {y}"))
+            answer = int(input(f"{x} + {y} = "))
             if answer == (x+y):
                 return 1
             else:
@@ -48,7 +48,7 @@ def math_checker(x,y):
 def level_checker(level):
     round = 0
     score = 0
-    while count < 10:
+    while round < 10:
         x,y = generate_integer(level)
         check = math_checker(x,y)
         if check == 1:
