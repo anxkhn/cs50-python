@@ -3,7 +3,6 @@ import random
 
 def main():
     level = get_level()
-    level_checker(level)
     score = level_checker(level)
     print("Score: ", score)
 
@@ -46,14 +45,16 @@ def math_checker(x,y):
     return 0
 
 def level_checker(level):
-    round = 0
+    qno = 0
     score = 0
-    while round < 10:
+    while qno < 3:
         x,y = generate_integer(level)
+        qno += 1
+        print(qno)
         check = math_checker(x,y)
         if check == 1:
             score +=1
-        round += 1
+            print(score)
     return score
 
 if __name__ == "__main__":
