@@ -6,10 +6,10 @@ if len(sys.argv) == 2:
     try:
         value = float(sys.argv[1])
     except:
-        print("Commandline")
+        print("Command-line argument is not a number")
         sys.exit(1)
 else:
-    print("Missing")
+    print("Missing command-line argument ")
     sys.exit(1)
 
 try:
@@ -18,5 +18,5 @@ try:
     amount = response['bpi']['USD']['rate_float'] * value
     print(f"${amount:,.4f}")
 except requests.RequestException:
-    print("Request")
+    print("RequestException Occured")
     sys.exit(1)
