@@ -47,7 +47,7 @@ def math_checker(x,y):
 def level_checker(level):
     qno = 0
     score = 0
-    while qno < 3:
+    while qno < 10:
         x,y = generate_integer(level)
         qno += 1
         check = math_checker(x,y)
