@@ -3,6 +3,10 @@ from fuel import convert, gauge
 
 # return int
 def test_convert():
+    with pytest.raises(ValueError):
+        convert("three/four")
+    with pytest.raises(ZeroDivisionError):
+        convert("4/0")
     assert convert("1/4") == 25
     assert convert("4/4") == 100
 
