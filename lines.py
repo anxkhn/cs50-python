@@ -15,7 +15,7 @@ elif len>=3:
 else:
     ext = sys.argv[1].split(".")
     if ext[1]!="py":
-        print("Not a Python file")
+        sys.exit("Not a Python file")
     else:
         try:
             file = open(sys.argv[1],"r")
@@ -28,4 +28,6 @@ else:
                 if check_comment_or_empty_line(line) == True:
                     count_lines += 1
             print(count_lines)
-sys.exit()
+
+if __name__ == "__main__":
+    main()
