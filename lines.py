@@ -9,9 +9,9 @@ def check_comment_or_empty_line(line):
 
 len = len(sys.argv)
 if len <= 1:
-    print("Too few command-line arguments")
+    sys.exit("Too few command-line arguments")
 elif len>=3:
-    print("Too many command-line arguments")
+    sys.exit("Too many command-line arguments")
 else:
     ext = sys.argv[1].split(".")
     if ext[1]!="py":
