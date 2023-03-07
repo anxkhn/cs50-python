@@ -29,5 +29,7 @@ else:
                     count_lines += 1
             print(count_lines)
 
+sys.exit()
+
 if __name__ == "__main__":
     main()
