@@ -17,7 +17,8 @@ def main():
     # Write new csv file
     with open(sys.argv[2], "w") as file:
         for i in read_content:
-            file.write(i)
+            x = i.replace(" ","").replace('"', "")
+            file.write(x)
             file.write("\n")
 
 
