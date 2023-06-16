@@ -15,11 +15,11 @@ def main():
     print(tabulate(table[1:], table[0], tablefmt="grid"))
 
 def command_line_check():
-    if len(sys.argv) < 3:
+    if len(sys.argv) < 2:
         sys.exit("Too few command-line arguments")
-    if len(sys.argv) > 3:
+    if len(sys.argv) > 2:
         sys.exit("Too many command-line arguments")
-    if ".csv" not in sys.argv[1] or ".csv" not in sys.argv[2]:
+    if ".csv" not in sys.argv[1]:
         sys.exit("Not a CSV file")
 
 
