@@ -3,7 +3,7 @@ import csv
 from tabulate import tabulate
 
 def main():
-    check_arg()
+    command_line_check()
     table = []
     try:
         with open(sys.argv[1]) as csvfile:
@@ -14,13 +14,14 @@ def main():
         sys.exit("File does not exist")
     print(tabulate(table[1:], table[0], tablefmt="grid"))
 
-def check_arg():
-    if len(sys.argv) < 2:
+def command_line_check():
+    if len(sys.argv) < 3:
         sys.exit("Too few command-line arguments")
-    if len(sys.argv) > 2:
+    if len(sys.argv) > 3:
         sys.exit("Too many command-line arguments")
-    if ".csv" not in sys.argv[1]:
+    if ".csv" not in sys.argv[1] or ".csv" not in sys.argv[2]:
         sys.exit("Not a CSV file")
+
 
 if __name__ == "__main__":
     main()
