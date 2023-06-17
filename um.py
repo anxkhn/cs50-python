@@ -7,7 +7,7 @@ def main():
 
 
 def count(s):
-    x = re.findall("\b(um)\b",s)
+    x = re.findall(r"\b(um)\b",s)
     return x
 
 
