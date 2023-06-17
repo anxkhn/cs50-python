@@ -1,7 +1,4 @@
-import re
-import sys
 from validator_collection import is_email
-
 
 def main():
     print(check(input("What's your email address? ")))
