@@ -7,9 +7,7 @@ def main():
 
 
 def count(s):
-    x = re.findall(r"\b(um)\b",s)
-    return x
-
+    return len(re.findall(r"\b(um)\b",s))
 
 
 if __name__ == "__main__":
