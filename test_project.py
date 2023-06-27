@@ -1,5 +1,5 @@
 
-from app import days_due_amount
+from app import days_due_amount,main
 
 def test_days_due_amount():
     assert days_due_amount(5) == 20
@@ -13,3 +13,7 @@ def test_days_due_amount():
     assert days_due_amount(45) == 210
     assert days_due_amount(50) == 235
     assert days_due_amount(100) == 485
+
+def main_check():
+    assert main() == "HELLO"
+

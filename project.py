@@ -510,6 +510,8 @@ def logout():
     session.clear()
     return redirect("/")
 
+def main():
+    return("HELLO")
 
 if __name__ == "__main__":
     app.run(debug=True)
