@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fee Calculation</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <style>
+            body {
+                background-color: #f8f9fa;
+            }
+
+            .container {
+                margin-top: 25px;
+                margin-bottom: 25px;
+                background-color: #fff;
+                border-radius: 10px;
+                padding: 30px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            }
+
+            h1 {
+                font-size: 30px;
+                font-weight: 600;
+                margin-bottom: 30px;
+                color: #333;
+            }
+
+            h4 {
+                font-size: 22px;
+                font-weight: 500;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            p {
+                font-size: 16px;
+                color: #555;
+            }
+
+            strong {
+                font-weight: 600;
+                color: #333;
+            }
+
+            span {
+                color: #777;
+            }
+
+            .amount {
+                font-size: 20px;
+                font-weight: bold;
+                color: red;
+            }
+
+            table {
+                width: 100%;
+                margin-bottom: 20px;
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            .header h4 {
+                margin-bottom: 0;
+            }
+
+            .header button {
+                margin-left: 10px;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            .right-buttons {
+                margin-left: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Member Fee Calculation</h1>
+                <div class="right-buttons">
+                    <button type="button" class="btn btn-outline-dark" onclick="window.print()">Print</button>
+                    <a href="/transactions" class="btn btn-outline-secondary">Go Back</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Issue Details for transaction {{transaction.id}}:</h4>
+                    <p>
+                        <strong>Book ID:</strong>
+                        <span id="bookId">{{transaction.book_id}}</span>
+                    </p>
+                    <p>
+                        <strong>Issue Date:</strong>
+                        <span id="issueDate">{{transaction.issue_date}}</span>
+                    </p>
+                    <p>
+                        <strong>Member ID:</strong>
+                        <span id="memberId">{{transaction.member_id}}</span>
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <h4>Payment Details:</h4>
+                    <p>
+                        <strong>Total Amount:</strong>
+                    </p> {% if transaction.status == 'Returned' %} <h4 id="amountToBePaid" class="amount">{{transaction.fee_paid}} Rupees</h4>
+                    <h6>BOOK ALREADY RETURNED</h6> {% else %} <h4 id="amountToBePaid" class="amount">{{amount}} Rupees</h4>
+                    <a href="/return_book/{{ transaction.id }}" class="btn btn-success">Return Book</a> {% endif %}
+                </div>
+            </div> {% if transaction.status != 'Returned' %} <h4>Fee Calculation:</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Days</th>
+                        <th>Fee</th>
+                        <th>Bill</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>First Week</td>
+                        <td>20 Rupees</td>
+                        <td>20 Rupees</td>
+                    </tr>
+                    <tr>
+                        <td>Subsequent Days</td>
+                        <td>5 Rupees / day</td>
+                        <td>{{due_days}} Days x 5 = {{due_amount}} Rupees</td>
+                    </tr>
+                    <tr>
+                        <td>Total</td>
+                        <td></td>
+                        <td>
+                            <b>{{amount}}</b> Rupees
+                        </td>
+                    </tr>
+                </tbody>
+            </table> {% endif %}
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

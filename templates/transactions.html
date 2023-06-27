@@ -1,0 +1,79 @@
+{% extends "layout.html" %} {% block title %} Transactions {% endblock %} {% block navbar %} <ul class="nav nav-pills">
+    <li class="nav-item">
+        <a href="/" class="nav-link">Books</a>
+    </li>
+    <li class="nav-item">
+        <a href="/members" class="nav-link">Members</a>
+    </li>
+    <li class="nav-item">
+        <a href="/transactions" class="nav-link active" aria-current="page">Transactions</a>
+    </li>
+    <li class="nav-item">
+        <a href="/reports" class="nav-link">Reports</a>
+    </li>
+</ul> {% endblock %} {% block main %} <style>
+    h1 {
+        font-size: 75px;
+    }
+</style>
+<div class="text-center">
+    <h1>Dashboard</h1>
+    <br>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h2>{{ title }}</h2>
+        </div>
+        <div class="col-6 text-end">
+            <form action="/transactions" method="POST">
+                <div class="input-group">
+                    <select class="form-select col-3" name="search_by" style="width: 25%;">
+                        <option value="book_id">Book ID</option>
+                        <option value="member_id">Member ID</option>
+                        <option value="id">Transaction ID</option>
+                    </select>
+                    <input type="text" class="form-control col-6" placeholder="Enter ID" name="query" pattern="[0-9]*" style="width: 50%;">
+                    <button class="btn btn-outline-secondary" type="submit" style="width: 10%;">
+                        <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                            </svg>
+                        </i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Transaction ID</th>
+                <th>Book Name</th>
+                <th>Book ID</th>
+                <th>Member ID</th>
+                <th>Member Name</th>
+                <th>Issue Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody> {% for transaction in transactions %} <tr>
+                <th>{{ transaction.id }}</th>
+                <th>{{ transaction.book_title }}</th>
+                <td>{{ transaction.book_id }}</td>
+                <td>{{ transaction.member_id }}</td>
+                <th>{{ transaction.member_name}}</th>
+                <td>{{ transaction.issue_date }}</td>
+                <td> {% if transaction.status == 'Issued' %} <span class="status-issued">Issued</span> {% elif transaction.status == 'Returned' %} <span class="status-returned">Returned</span> {% endif %} </td>
+                <td>
+                    <a href="/fee/{{ transaction.id }}" class="btn btn-success">Check <i>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
+                                <path fill="#ffffff" d="M0 112.5V422.3c0 18 10.1 35 27 41.3c87 32.5 174 10.3 261-11.9c79.8-20.3 159.6-40.7 239.3-18.9c23 6.3 48.7-9.5 48.7-33.4V89.7c0-18-10.1-35-27-41.3C462 15.9 375 38.1 288 60.3C208.2 80.6 128.4 100.9 48.7 79.1C25.6 72.8 0 88.6 0 112.5zM288 352c-44.2 0-80-43-80-96s35.8-96 80-96s80 43 80 96s-35.8 96-80 96zM64 352c35.3 0 64 28.7 64 64H64V352zm64-208c0 35.3-28.7 64-64 64V144h64zM512 304v64H448c0-35.3 28.7-64 64-64zM448 96h64v64c-35.3 0-64-28.7-64-64z" />
+                            </svg>
+                        </i>
+                    </a>
+                </td>
+            </tr> {% endfor %} </tbody>
+    </table>
+</div> {% endblock %}
