@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Member Info</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <style>
+            body {
+                background-color: #f8f9fa;
+            }
+
+            .container {
+                margin-top: 25px;
+                margin-bottom: 25px;
+                background-color: #fff;
+                border-radius: 10px;
+                padding: 30px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            }
+
+            h1 {
+                font-size: 30px;
+                font-weight: 600;
+                margin-bottom: 30px;
+                color: #333;
+            }
+
+            h4 {
+                font-size: 22px;
+                font-weight: 500;
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+            p {
+                font-size: 16px;
+                color: #555;
+            }
+
+            strong {
+                font-weight: 600;
+                color: #333;
+            }
+
+            span {
+                color: #777;
+            }
+
+            .amount {
+                font-size: 20px;
+                font-weight: bold;
+                color: red;
+            }
+
+            table {
+                width: 100%;
+                margin-bottom: 20px;
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #f2f2f2;
+            }
+
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+
+            .header h4 {
+                margin-bottom: 0;
+            }
+
+            .header button {
+                margin-left: 10px;
+            }
+
+            .right-buttons {
+                margin-left: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Member Info</h1>
+                <div class="right-buttons">
+                    <button type="button" class="btn btn-outline-dark" onclick="window.print()">Print</button>
+                    <a href="/members" class="btn btn-outline-secondary">Go Back</a>
+                </div>
+            </div>
+            <div>
+                <p>
+                    <strong>ID:</strong>
+                    <span>{{info.id}}</span>
+                </p>
+                <p>
+                    <strong>Name:</strong>
+                    <span>{{info.name}}</span>
+                </p>
+                <p>
+                    <strong>Email:</strong>
+                    <span>{{info.email}}</span>
+                </p>
+                <p>
+                    <strong>Phone:</strong>
+                    <span>{{info.phone}}</span>
+                </p>
+                <p>
+                    <strong>Date of Joining:</strong>
+                    <span>{{info.doj}}</span>
+                </p>
+                <p>
+                    <strong>Amount Due:</strong>
+                    <span class="amount">{{due}}</span>
+                </p>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
