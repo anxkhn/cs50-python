@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Book Search</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+        <style>
+            .card {
+                display: flex;
+                margin-bottom: 20px;
+                border: none;
+                box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+                flex-direction: row-reverse;
+            }
+
+            .card-button {
+                margin: 20px;
+            }
+
+            .card-img-container {
+                flex: 0 0 200px;
+                overflow: hidden;
+            }
+
+            .card-img-container img {
+                /* width: 100%; */
+                aspect-ratio: 1;
+                height: 150px;
+                object-fit: contain;
+            }
+
+            .card-body {
+                flex: 1;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                /* justify-content: space-between; */
+            }
+
+            .card-title {
+                font-size: 20px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+            .card-text {
+                margin-bottom: 10px;
+            }
+
+            .card-details {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .card-button {
+                flex-shrink: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h1>Book Search</h1>
+            <form>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <select class="form-select" name="criteria">
+                            <option value="title">Title</option>
+                            <option value="authors">Authors</option>
+                            <option value="isbn">ISBN</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control" name="query" placeholder="Enter search query">
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <button type="submit" class="btn btn-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                <path fill="#ffffff" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" />
+                            </svg>
+                        </button>
+                        <a href="/" class="btn btn-primary">Go Home</a>
+                    </div>
+                </div>
+            </form>
+            <div id="feedbackContainer" class="container mt-3"></div>
+            <div id="searchResults" class="mt-5"></div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+        <script>
+            // Form submission
+            function handleFormSubmit(event) {
+                event.preventDefault();
+                const criteria = document.querySelector('select[name="criteria"]').value;
+                const query = document.querySelector('input[name="query"]').value;
+                // Send AJAX request
+                axios.get('/api/search', {
+                    params: {
+                        [criteria]: query
+                    }
+                }).then(function(response) {
+                    displaySearchResults(response.data.message);
+                }).catch(function(error) {
+                    console.log(error);
+                });
+            }
+            // Function to display search results
+            function displaySearchResults(results) {
+                const searchResults = document.getElementById('searchResults');
+                searchResults.innerHTML = ''; // Clear previous results
+                if (results.length === 0) {
+                    searchResults.innerHTML = ' < p > No results found. < /p>';
+                    return;
+                }
+                results.forEach(function(result) {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    const cardImgContainer = document.createElement('div');
+                    cardImgContainer.classList.add('card-img-container');
+                    const cardImg = document.createElement('img');
+                    cardImg.classList.add('card-img-top');
+                    cardImg.src = "https://covers.openlibrary.org/b/isbn/" + result.isbn + "-M.jpg";
+                    cardImg.alt = result.title;
+                    const cardBody = document.createElement('div');
+                    cardBody.classList.add('card-body');
+                    const cardTitle = document.createElement('h5');
+                    cardTitle.classList.add('card-title');
+                    cardTitle.innerText = result.title;
+                    const cardAuthors = document.createElement('p');
+                    cardAuthors.classList.add('card-text');
+                    cardAuthors.innerText = 'Authors: ' + result.authors;
+                    const cardIsbn = document.createElement('p');
+                    cardIsbn.classList.add('card-text');
+                    cardIsbn.innerText = 'ISBN: ' + result.isbn;
+                    const cardPublicationDate = document.createElement('p');
+                    cardPublicationDate.classList.add('card-text');
+                    cardPublicationDate.innerText = 'Publication Date: ' + result.publication_date;
+                    const cardPublisher = document.createElement('p');
+                    cardPublisher.classList.add('card-text');
+                    cardPublisher.innerText = 'Publisher: ' + result.publisher;
+                    const cardNumPages = document.createElement('p');
+                    cardNumPages.classList.add('card-text');
+                    cardNumPages.innerText = 'Number of Pages: ' + result.num_pages;
+                    const cardDetails = document.createElement('div');
+                    cardDetails.classList.add('card-details');
+                    const cardButton = document.createElement('button');
+                    cardButton.classList.add('btn', 'btn-primary', 'card-button');
+                    cardButton.setAttribute('data-bs-toggle', 'modal');
+                    cardButton.setAttribute('data-bs-target', '#importModal');
+                    cardButton.innerText = 'Import';
+                    cardButton.addEventListener('click', function() {
+                        const numBooksInput = document.getElementById('numBooksInput');
+                        numBooksInput.value = ''; 
+                        numBooksInput.setAttribute('data-result', JSON.stringify(result));
+                    });
+                    const importModal = document.createElement('div');
+                    importModal.classList.add('modal', 'fade');
+                    importModal.setAttribute('id', 'importModal');
+                    importModal.setAttribute('tabindex', '-1');
+                    importModal.setAttribute('aria-labelledby', 'importModalLabel');
+                    importModal.setAttribute('aria-hidden', 'true');
+                    importModal.innerHTML = `
+    
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="importModalLabel">Import Books</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										<input type="number" class="form-control" id="numBooksInput" placeholder="Enter the number of books to import" min="1">
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+											<button type="button" class="btn btn-primary" onclick="handleImport()">Import</button>
+										</div>
+									</div>
+								</div>
+`;
+                    document.body.appendChild(importModal);
+                    window.handleImport = function() {
+                        const numBooksInput = document.getElementById('numBooksInput');
+                        const numBooks = numBooksInput.value;
+                        const result = JSON.parse(numBooksInput.getAttribute('data-result'));
+                        if (numBooks && !isNaN(numBooks) && parseInt(numBooks) >= 1) {
+                            addToCart(result.title, result.authors, result.isbn, numBooks, result.publication_date, result.publisher, result.num_pages);
+                            const importModal = bootstrap.Modal.getInstance(document.getElementById('importModal'));
+                            importModal.hide(); // Hide the modal
+                        } else {
+                            alert('Invalid number of books!');
+                        }
+                    };
+                    cardImgContainer.appendChild(cardImg);
+                    cardDetails.appendChild(cardAuthors);
+                    cardDetails.appendChild(cardIsbn);
+                    cardDetails.appendChild(cardPublicationDate);
+                    cardDetails.appendChild(cardPublisher);
+                    cardDetails.appendChild(cardNumPages);
+                    cardDetails.appendChild(cardButton);
+                    cardBody.appendChild(cardTitle);
+                    cardBody.appendChild(cardDetails);
+                    card.appendChild(cardBody);
+                    card.appendChild(cardImgContainer);
+                    searchResults.appendChild(card);
+                });
+            }
+            // add book to cart
+            function addToCart(title, authors, isbn, numBooks, publicationDate, publisher, numPages) {
+                // Send AJAX request 
+                axios.post('/import_books', {
+                    title: title,
+                    authors: authors,
+                    isbn: isbn,
+                    numBooks: numBooks,
+                    publication_date: publicationDate,
+                    publisher: publisher,
+                    num_pages: numPages
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(function(response) {
+                    displayFeedback('success', 'Book added successfully!');
+                    console.log(response.data);
+                }).catch(function(error) {
+                    displayFeedback('error', 'Failed to add the book. Please try again.');
+                    console.log(error);
+                });
+            }
+            function displayFeedback(type, message) {
+                const feedbackContainer = document.getElementById('feedbackContainer');
+                feedbackContainer.innerHTML = ''; 
+                const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+                const alertElement = document.createElement('div');
+                alertElement.classList.add('alert', alertClass);
+                alertElement.innerText = message;
+                feedbackContainer.appendChild(alertElement);
+            }
+            const form = document.querySelector('form');
+            form.addEventListener('submit', handleFormSubmit);
+        </script>
+    </body>
+</html>
